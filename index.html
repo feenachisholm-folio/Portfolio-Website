@@ -2878,6 +2878,13 @@
             renderer.render(scene, camera);
         }
 
+        function updateSceneDiagramLines() {
+            const wide = window.innerWidth >= 1100;
+            volumeBox.visible = wide;
+            boundaryLine.visible = wide;
+        }
+        updateSceneDiagramLines();
+
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / heroHeight();
             camera.updateProjectionMatrix();
@@ -2886,6 +2893,7 @@
             [floatIcon, floatIcon2, floatIcon4]
                 .forEach(spr => spr.scale.set(s, s, 1));
             floatIcon5.scale.set(s * 1.2, s * 1.2, 1);
+            updateSceneDiagramLines();
         });
 
         let animationStarted = false;
