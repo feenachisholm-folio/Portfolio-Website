@@ -466,6 +466,11 @@
             margin: 0 0 8px auto;
             animation: icon-float 3.1s infinite ease-in-out;
         }
+        .headphones-label, .smiley-label, .plane-label, .mouse-label { display: none; }
+        .headphones-icon { display: block; shape-rendering: crispEdges; animation: icon-float 3.7s infinite ease-in-out; }
+        .smiley-icon     { display: block; shape-rendering: crispEdges; animation: icon-float 4.1s infinite ease-in-out; }
+        .plane-icon      { display: block; shape-rendering: crispEdges; animation: icon-float 2.9s infinite ease-in-out; }
+        .mouse-icon      { display: block; shape-rendering: crispEdges; animation: icon-float 3.5s infinite ease-in-out; }
 
         @keyframes hero-gradient-shift {
             0%   { background-position: 0% 0%; }
@@ -1656,6 +1661,10 @@
             .header-status .status-line { display: none; }
             .tools-label { display: block; position: absolute; bottom: 20px; left: 16px; padding: 12px; border: none; font-size: 0; line-height: 0; }
             .tools-label svg { display: block; }
+            .headphones-label { display: block; position: absolute; top: 42%; left: 36%; transform: translate(-50%, -50%); }
+            .smiley-label     { display: block; position: absolute; top: 28%; left: 68%; transform: translate(-50%, -50%); }
+            .plane-label      { display: block; position: absolute; top: 64%; left: 50%; transform: translate(-50%, -50%); }
+            .mouse-label      { display: block; position: absolute; top: 50%; left: 73%; transform: translate(-50%, -50%); }
             .y-labels { display: none; }
             .diagram-label,
             .experience-label,
@@ -1808,6 +1817,99 @@
                 Tools:<br>
                 Claude Code<br>
                 Figma
+            </div>
+
+            <div class="headphones-label" aria-hidden="true">
+                <svg class="headphones-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" shape-rendering="crispEdges" focusable="false">
+                    <path d="M17 7.33334H18V8.33334H17V7.33334Z" fill="currentColor"/>
+                    <path d="M16 6.33334H17V7.33334H16V6.33334Z" fill="currentColor"/>
+                    <path d="M15 5.33334H16V6.33334H15V5.33334Z" fill="currentColor"/>
+                    <path d="M8 5.33334H9V6.33334H8V5.33334Z" fill="currentColor"/>
+                    <path d="M7 6.33334H8V7.33334H7V6.33334Z" fill="currentColor"/>
+                    <path d="M6 7.33334H7V8.33334H6V7.33334Z" fill="currentColor"/>
+                    <path d="M6 18.3333H7V14.3333H6V8.33334H5V14.3333V15.3333H6V18.3333Z" fill="currentColor"/>
+                    <path d="M10 14.3333V13.3333H7V14.3333H10Z" fill="currentColor"/>
+                    <path d="M10 18.3333H11V14.3333H10V18.3333Z" fill="currentColor"/>
+                    <path d="M10 19.3333V18.3333H7V19.3333H10Z" fill="currentColor"/>
+                    <path d="M13 18.3333H14V14.3333H13V18.3333Z" fill="currentColor"/>
+                    <path d="M14 13.3333V14.3333H17V13.3333H14Z" fill="currentColor"/>
+                    <path d="M14 18.3333V19.3333H17V18.3333H14Z" fill="currentColor"/>
+                    <path d="M15 5.33334V4.33334H9V5.33334H15Z" fill="currentColor"/>
+                    <path d="M17 18.3333H18V15.3333H19V8.33334H18V14.3333H17V18.3333Z" fill="currentColor"/>
+                    <path d="M7 18.3333V14.3333H10V18.3333H7Z" fill="white"/>
+                    <path d="M17 18.3333H14V14.3333H17V18.3333Z" fill="white"/>
+                </svg>
+            </div>
+
+            <div class="smiley-label" aria-hidden="true">
+                <svg class="smiley-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" shape-rendering="crispEdges" focusable="false">
+                    <path d="M15 6H9V7H7V9H6V15H7V17H9V18H15V17H17V15H18V9H17V7H15V6Z" fill="white"/>
+                    <path d="M9 14H10V15H9V14Z" fill="currentColor"/>
+                    <path d="M15 14H14V15H15V14Z" fill="currentColor"/>
+                    <path d="M9 9H10V10H9V9Z" fill="currentColor"/>
+                    <path d="M15 9H14V10H15V9Z" fill="currentColor"/>
+                    <path d="M10 10H11V11H10V10Z" fill="currentColor"/>
+                    <path d="M14 10H13V11H14V10Z" fill="currentColor"/>
+                    <path d="M8 10H9V11H8V10Z" fill="currentColor"/>
+                    <path d="M16 10H15V11H16V10Z" fill="currentColor"/>
+                    <path d="M9 18V19H15V18H9Z" fill="currentColor"/>
+                    <path d="M14 16V15H10V16H14Z" fill="currentColor"/>
+                    <path d="M7 17V18H9V17H7Z" fill="currentColor"/>
+                    <path d="M7 15H6V17H7V15Z" fill="currentColor"/>
+                    <path d="M5 15H6V9H5V15Z" fill="currentColor"/>
+                    <path d="M6 9H7V7H6V9Z" fill="currentColor"/>
+                    <path d="M7 6V7H9V6H7Z" fill="currentColor"/>
+                    <path d="M9 5V6H15V5H9Z" fill="currentColor"/>
+                    <path d="M17 7V6H15V7H17Z" fill="currentColor"/>
+                    <path d="M17 9H18V7H17V9Z" fill="currentColor"/>
+                    <path d="M18 15H19V9H18V15Z" fill="currentColor"/>
+                    <path d="M18 15H17V17H18V15Z" fill="currentColor"/>
+                    <path d="M17 18V17H15V18H17Z" fill="currentColor"/>
+                </svg>
+            </div>
+
+            <div class="plane-label" aria-hidden="true">
+                <svg class="plane-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" shape-rendering="crispEdges" focusable="false">
+                    <path d="M15 14.6667V17.6667H14V16.6667H11H10V13.6667H8V12.6667H6V11.6667H8V10.6667H10V9.66666H12V8.66666H14V7.66666H16V6.66666H18V8.66666H17V11.6667H16V14.6667H15Z" fill="white"/>
+                    <path d="M5 11.6667H6V12.6667H5V11.6667Z" fill="currentColor"/>
+                    <path d="M14 17.6667H15V18.6667H14V17.6667Z" fill="currentColor"/>
+                    <path d="M13 16.6667H14V17.6667H13V16.6667Z" fill="currentColor"/>
+                    <path d="M11 12.6667H12V13.6667H11V12.6667Z" fill="currentColor"/>
+                    <path d="M12 11.6667H13V12.6667H12V11.6667Z" fill="currentColor"/>
+                    <path d="M13 10.6667H14V11.6667H13V10.6667Z" fill="currentColor"/>
+                    <path d="M14 9.66666H15V10.6667H14V9.66666Z" fill="currentColor"/>
+                    <path d="M15 8.66666H16V9.66666H15V8.66666Z" fill="currentColor"/>
+                    <path d="M16 7.66666H17V8.66666H16V7.66666Z" fill="currentColor"/>
+                    <path d="M6 10.6667V11.6667H8V10.6667H6Z" fill="currentColor"/>
+                    <path d="M8 13.6667V12.6667H6V13.6667H8Z" fill="currentColor"/>
+                    <path d="M11 16.6667H10V14.6667H11V13.6667H8V14.6667H9V18.6667H10V17.6667H11V16.6667Z" fill="currentColor"/>
+                    <path d="M13 15.6667H12V14.6667H11V16.6667H13V15.6667Z" fill="currentColor"/>
+                    <path d="M16 14.6667H15V17.6667H16V14.6667Z" fill="currentColor"/>
+                    <path d="M17 11.6667H16V14.6667H17V11.6667Z" fill="currentColor"/>
+                    <path d="M8 9.66666V10.6667H10V9.66666H8Z" fill="currentColor"/>
+                    <path d="M10 8.66666V9.66666H12V8.66666H10Z" fill="currentColor"/>
+                    <path d="M12 7.66666V8.66666H14V7.66666H12Z" fill="currentColor"/>
+                    <path d="M16 7.66666V6.66666H14V7.66666H16Z" fill="currentColor"/>
+                    <path d="M16 5.66666V6.66666H18V5.66666H16Z" fill="currentColor"/>
+                    <path d="M19 6.66666H18V8.66666H19V6.66666Z" fill="currentColor"/>
+                    <path d="M18 8.66666H17V11.6667H18V8.66666Z" fill="currentColor"/>
+                </svg>
+            </div>
+
+            <div class="mouse-label" aria-hidden="true">
+                <svg class="mouse-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" shape-rendering="crispEdges" focusable="false">
+                    <path d="M9 6H15V7H14V11H13V7H11V11H10V7H9V6Z" fill="currentColor"/>
+                    <path d="M9 12V11H10V12H9Z" fill="currentColor"/>
+                    <path d="M8 13V12H9V13H8Z" fill="currentColor"/>
+                    <path d="M8 16H7V13H8V16Z" fill="currentColor"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 16H8V17H9V18H10V19H14V18H15V17H16V16H17V13H16V12H15V11H14V12H15V13H16V16H15V15H9V16ZM10 17V18H14V17H15V16H14V17H10ZM10 17H9V16H10V17Z" fill="currentColor"/>
+                    <path d="M11 13H10V14H11V13Z" fill="currentColor"/>
+                    <path d="M12 12H13V13H12V12Z" fill="currentColor"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 7H13V11H14V12H15V13H16V16H15V15H9V16H8V13H9V12H10V11H11V7ZM13 13V12H12V13H13ZM11 13V14H10V13H11Z" fill="white"/>
+                    <path d="M10 17H9V16H10V17Z" fill="white"/>
+                    <path d="M14 17V18H10V17H14Z" fill="white"/>
+                    <path d="M14 17H15V16H14V17Z" fill="white"/>
+                </svg>
             </div>
 
             <div class="ui-element header-status">
