@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miro, License Overhaul — Feena Chisholm</title>
+    <meta name="description" content="Case study: redesigning Miro's licensing model to improve admin clarity, pricing fit, and team activation.">
+    <meta property="og:title" content="Miro, License Overhaul — Feena Chisholm">
+    <meta property="og:description" content="Case study: redesigning Miro's licensing model to improve admin clarity, pricing fit, and team activation.">
+    <meta property="og:image" content="../miro-basic-license.png">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Miro, License Overhaul — Feena Chisholm">
+    <meta name="twitter:description" content="Case study: redesigning Miro's licensing model to improve admin clarity, pricing fit, and team activation.">
+    <meta name="twitter:image" content="../miro-basic-license.png">
+    <script>
+        // Gate direct URL access — require unlock from the folio
+        (function () {
+            if (localStorage.getItem('projects-unlocked') !== '1') {
+                window.location.replace('../feen-test-folio.html');
+            }
+        })();
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTE1IDZIOVY3SDdWOUg2VjE1SDdWMTdIOVYxOEgxNVYxN0gxN1YxNUgxOFY5SDE3VjdIMTVWNloiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTkgMTRIMTBWMTVIOVYxNFoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTE1IDE0SDE0VjE1SDE1VjE0WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNOSA5SDEwVjEwSDlWOVoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTE1IDlIMTRWMTBIMTVWOVoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTEwIDEwSDExVjExSDEwVjEwWiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTQgMTBIMTNWMTFIMTRWMTBaIiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik04IDEwSDlWMTFIOFYxMFoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTE2IDEwSDE1VjExSDE2VjEwWiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNOSAxOFYxOUgxNVYxOEg5WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTQgMTZWMTVIMTBWMTZIMTRaIiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik03IDE3VjE4SDlWMTdIN1oiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTcgMTVINlYxN0g3VjE1WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNNSAxNUg2VjlINVYxNVoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTYgOUg3VjdINkw2IDlaIiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik03IDZWN0g5VjZIN1oiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTkgNVY2SDE1VjVIOVoiIGZpbGw9ImJsYWNrIi8+PHBhdGggZD0iTTE3IDdWNkgxNVY3SDE3WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTcgOUgxOFY3SDE3VjlaIiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik0xOCAxNUgxOVY5SDE4VjE1WiIgZmlsbD0iYmxhY2siLz48cGF0aCBkPSJNMTggMTVIMTdWMTdIMThWMTVaIiBmaWxsPSJibGFjayIvPjxwYXRoIGQ9Ik0xNyAxOFYxN0gxNVYxOEgxN1oiIGZpbGw9ImJsYWNrIi8+PC9zdmc+Cg==">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #e4e4e2;
+            --fg: #1a1a1a;
+            --font: 'Space Mono', monospace;
+            --font-body: 'Roboto Mono', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body, html {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--font);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+        }
+
+        /* ----- Top nav (mirrors folio) ----- */
+        nav#topnav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 30;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 32px;
+            background: var(--bg);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);
+        }
+        nav#topnav a {
+            color: inherit;
+            text-decoration: none;
+            font-size: 12px;
+            opacity: 0.85;
+            transition: opacity 0.15s;
+        }
+        nav#topnav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+        .nav-home { display: inline-flex; align-items: center; gap: 8px; }
+        .nav-breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+        .nav-breadcrumb a { opacity: 0.5; }
+        .nav-breadcrumb a:hover { opacity: 0.9; }
+        .nav-breadcrumb .nav-sep { opacity: 0.35; }
+        .nav-breadcrumb .nav-current {
+            opacity: 1;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+        }
+
+        main { padding-top: 80px; }
+
+        /* ----- Project hero ----- */
+        .project-hero {
+            position: relative;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 48px 24px;
+        }
+        .project-hero img {
+            display: block;
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            object-fit: contain;
+        }
+        .figma-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 32px;
+            color: inherit;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: opacity 0.15s;
+        }
+        .figma-link:hover,
+        .figma-link:focus-visible { opacity: 0.65; }
+        .figma-link svg {
+            width: 24px;
+            height: 24px;
+            shape-rendering: crispEdges;
+            flex-shrink: 0;
+        }
+
+        /* ----- Meta strip ----- */
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            padding: 28px 40px;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);
+            font-size: 12px;
+        }
+        .project-meta-cell { display: flex; flex-direction: column; gap: 6px; }
+        .project-meta-label { opacity: 0.55; }
+        .project-meta-value { font-size: 13px; display: inline-flex; align-items: center; gap: 8px; }
+        .project-meta-value a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.15s;
+        }
+        .project-meta-value a:hover { opacity: 0.65; }
+        .project-meta-value svg {
+            width: 18px;
+            height: 18px;
+            shape-rendering: crispEdges;
+            flex-shrink: 0;
+        }
+
+        /* ----- Title block ----- */
+        .project-title-block {
+            padding: 80px 40px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .project-title-block .project-desc { margin-left: auto; margin-right: auto; }
+        .project-case-num {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-bottom: 16px;
+        }
+        .project-title {
+            font-size: 56px;
+            line-height: 1.05;
+            font-weight: normal;
+            letter-spacing: -0.01em;
+            margin: 0 0 24px;
+        }
+        .project-desc {
+            font-family: var(--font-body);
+            font-size: 20px;
+            line-height: 1.55;
+            text-transform: none;
+            letter-spacing: 0;
+            max-width: 720px;
+            margin: 0;
+        }
+        .project-meta-row {
+            margin-top: 20px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            opacity: 0.55;
+        }
+
+        /* ----- Body sections ----- */
+        .project-section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 80px;
+            border-top: 0.5px solid rgba(0, 0, 0, 0.12);
+        }
+        .project-section:first-of-type { border-top: none; }
+        .project-section#intro {
+            grid-template-columns: 1fr;
+            gap: 24px;
+            text-align: center;
+            background: #d4d4d2;
+            max-width: none;
+            padding-left: 40px;
+            padding-right: 40px;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+        }
+        .project-section#intro > * { max-width: 1200px; margin-left: auto; margin-right: auto; width: 100%; }
+        .project-section#intro .project-section-heading { position: static; }
+        .project-section#intro .project-section-body { margin-left: auto; margin-right: auto; }
+        .project-section-heading {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            opacity: 0.55;
+            font-weight: normal;
+            margin: 0;
+            position: sticky;
+            top: 100px;
+            align-self: start;
+            height: fit-content;
+        }
+        .project-section-body {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.6;
+            text-transform: none;
+            letter-spacing: 0;
+            max-width: 720px;
+        }
+        .project-section-body p { margin: 0 0 1.2em; }
+        .project-section-body p:last-child { margin-bottom: 0; }
+        .project-section-body p:first-child { font-size: 22px; line-height: 1.45; margin-bottom: 1.6em; }
+        .project-section-body strong { font-weight: 700; }
+
+        /* ----- Pull quote ----- */
+        .project-quote {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 56px 40px;
+            border-top: 0.5px dashed rgba(0, 0, 0, 0.2);
+        }
+        .project-quote blockquote {
+            font-family: var(--font-body);
+            font-size: 28px;
+            line-height: 1.35;
+            text-transform: none;
+            letter-spacing: -0.005em;
+            margin: 0;
+            padding-left: 24px;
+            border-left: 2px solid currentColor;
+        }
+        .project-quote cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            font-style: normal;
+            padding-left: 26px;
+        }
+        @media (max-width: 800px) {
+            .project-quote { padding: 40px 20px; }
+            .project-quote blockquote { font-size: 20px; padding-left: 16px; }
+            .project-quote cite { padding-left: 18px; }
+        }
+
+        /* ----- Image break ----- */
+        .project-image-block {
+            padding: 40px 40px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .project-image-block img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 0.5px solid rgba(0, 0, 0, 0.15);
+        }
+        .project-image-caption {
+            margin-top: 12px;
+            font-size: 11px;
+            opacity: 0.55;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ----- Gallery ----- */
+        .project-gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 56px 40px;
+            border-top: 0.5px dashed rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .project-gallery img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+        .project-gallery-heading {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.65;
+            font-weight: normal;
+            margin: 0 0 8px;
+        }
+
+        /* ----- Next project / back ----- */
+        .project-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            padding: 64px 40px;
+            border-top: 0.5px solid rgba(0, 0, 0, 0.15);
+            font-size: 12px;
+        }
+        .project-footer a {
+            color: inherit;
+            text-decoration: none;
+            border: 0.5px solid currentColor;
+            padding: 24px 24px;
+            transition: background 0.15s;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .project-footer a:hover { background: rgba(0, 0, 0, 0.05); }
+        .project-footer-label {
+            font-size: 10px;
+            opacity: 0.55;
+            letter-spacing: 0.12em;
+        }
+        .project-footer-title {
+            font-size: 16px;
+            letter-spacing: 0.02em;
+        }
+        .project-footer-next { text-align: right; align-items: flex-end; }
+        @media (max-width: 800px) {
+            .project-footer { grid-template-columns: 1fr; padding: 40px 20px; }
+            .project-footer-next { text-align: left; align-items: flex-start; }
+        }
+        .project-jump {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: inherit;
+            text-decoration: none;
+            border: 0.5px solid currentColor;
+            padding: 12px 18px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.15s;
+        }
+        .project-jump:hover { background: rgba(0, 0, 0, 0.05); }
+        .project-jump-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .project-jump-wrap--end {
+            display: flex;
+            justify-content: center;
+            padding: 32px 40px;
+        }
+        @media (max-width: 800px) {
+            .project-jump-wrap { padding: 0 20px 12px; }
+            .project-jump-wrap--end { padding: 24px 20px; }
+        }
+
+        /* ----- Reading progress ----- */
+        .read-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--fg);
+            width: 0;
+            z-index: 200;
+            transition: width 0.08s linear;
+            pointer-events: none;
+        }
+
+        /* ----- Sticky TOC ----- */
+        .project-toc {
+            position: fixed;
+            top: 120px;
+            left: 24px;
+            z-index: 20;
+            width: 140px;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .project-toc.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .project-toc-title {
+            opacity: 0.5;
+            margin-bottom: 14px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+        .project-toc ul { list-style: none; padding: 0; margin: 0; }
+        .project-toc li { margin: 4px 0; }
+        .project-toc a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.55;
+            text-transform: uppercase;
+            transition: opacity 0.15s, padding-left 0.15s;
+            display: block;
+            padding: 4px 0 4px 12px;
+            border-left: 1px solid currentColor;
+        }
+        .project-toc a:hover { opacity: 1; }
+        .project-toc a.is-active {
+            opacity: 1;
+            font-weight: 500;
+        }
+        @media (max-width: 1440px) {
+            .project-toc { display: none; }
+        }
+
+        /* ----- Gallery lightbox ----- */
+        .project-gallery img { cursor: zoom-in; }
+        .gallery-lightbox {
+            position: fixed;
+            inset: 0;
+            background: #101010;
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 80px 0;
+        }
+        .gallery-lightbox.is-open { display: flex; }
+        body.gallery-open nav#topnav { display: none; }
+        body.gallery-open .project-toc { display: none; }
+        .gallery-lightbox img {
+            display: block;
+            max-width: 92vw;
+            max-height: 88vh;
+            object-fit: contain;
+        }
+        .gallery-lightbox-close,
+        .gallery-nav {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 0.5px solid rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.15s;
+        }
+        .gallery-lightbox-close:hover,
+        .gallery-nav:hover { background: rgba(255, 255, 255, 0.2); }
+        .gallery-lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 14px;
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            font-size: 16px;
+        }
+        .gallery-prev { left: 20px; }
+        .gallery-next { right: 20px; }
+        .gallery-counter {
+            position: absolute;
+            top: 26px;
+            left: 24px;
+            font-size: 11px;
+            opacity: 0.7;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        @media (max-width: 800px) {
+            .gallery-nav {
+                top: auto;
+                bottom: 24px;
+                transform: none;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        /* ----- Mobile ----- */
+        @media (max-width: 800px) {
+            nav#topnav { padding: 10px 16px; }
+            .project-hero { padding: 24px 16px; }
+            .project-meta { grid-template-columns: 1fr 1fr; padding: 20px; gap: 16px; }
+            .project-title-block { padding: 48px 20px 16px; }
+            .project-title { font-size: 32px; }
+            .project-desc { font-size: 16px; }
+            .project-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 40px 20px;
+            }
+            .project-section-heading { position: static; }
+            .project-image-block { padding: 16px 20px; }
+            .project-footer { padding: 40px 20px; gap: 12px; flex-direction: column; }
+            .project-footer a { width: 100%; text-align: center; }
+        }
+
+        /* ----- Drench + dark mode buttons (inline at page bottom) ----- */
+        #drench-btn, #dark-btn {
+            background: var(--fg);
+            color: #ffffff;
+            border: none;
+            padding: 12px 16px;
+            font-family: var(--font);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+        #drench-btn:hover, #dark-btn:hover { transform: translateY(-1px); }
+        .project-jump-wrap--end {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .dark-mode #drench-btn, .dark-mode #dark-btn { color: #000; }
+        .dark-mode nav#topnav { background: var(--bg); border-bottom-color: rgba(255,255,255,0.15); }
+        .dark-mode .project-hero { background: #1a1a1a; border-bottom-color: rgba(255,255,255,0.15); }
+        .dark-mode .project-section { border-top-color: rgba(255,255,255,0.12); }
+        .dark-mode .project-meta { border-bottom-color: rgba(255,255,255,0.15); }
+        .dark-mode .project-section#intro { background: #2a2a2a; border-bottom-color: rgba(255,255,255,0.15); }
+        .dark-mode .project-footer { border-top-color: rgba(255,255,255,0.15); }
+        .dark-mode .read-progress { background: var(--fg); }
+        @media (max-width: 800px) {
+            #drench-btn, #dark-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="topnav" aria-label="Primary">
+        <div class="nav-breadcrumb">
+            <a href="../feen-test-folio.html">Feena Chisholm</a>
+            <span class="nav-sep">/</span>
+            <a href="../feen-test-folio.html#work">Work</a>
+            <span class="nav-sep">/</span>
+            <span class="nav-current">Miro, License Overhaul</span>
+        </div>
+        <div>
+            <a href="../feen-test-folio.html#work">All Work</a>
+        </div>
+    </nav>
+
+    <div class="read-progress" id="read-progress" aria-hidden="true"></div>
+
+    <aside class="project-toc" aria-label="On this page">
+        <div class="project-toc-title">On this page</div>
+        <ul>
+            <li><a href="#intro">Intro</a></li>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#principles">Principles</a></li>
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#designs">Designs</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+        </ul>
+    </aside>
+
+    <main id="top">
+        <div class="project-hero">
+            <img src="../miro-basic-license.png" alt="Miro License Overhaul — All users admin view with license overview">
+        </div>
+
+        <div class="project-meta">
+            <div class="project-meta-cell">
+                <span class="project-meta-label">Year</span>
+                <span class="project-meta-value">2024</span>
+            </div>
+            <div class="project-meta-cell">
+                <span class="project-meta-label">Role</span>
+                <span class="project-meta-value">Senior Product Designer</span>
+            </div>
+            <div class="project-meta-cell">
+                <span class="project-meta-label">Tags</span>
+                <span class="project-meta-value">[Flagship] / [Pricing] / [Admin]</span>
+            </div>
+            <div class="project-meta-cell">
+                <span class="project-meta-label">Figma</span>
+                <span class="project-meta-value">
+                    <a href="#" target="_blank" rel="noopener noreferrer">View file ↗</a>
+                </span>
+            </div>
+        </div>
+
+
+        <section class="project-section" id="intro">
+            <h2 class="project-section-heading">Intro</h2>
+            <div class="project-section-body">
+                <p><strong>Miro, License Overhaul</strong> &middot; 5 min read &middot; Updated May 2026</p>
+                <p>[Short overarching description of the License Overhaul project — what it unlocked for Miro&rsquo;s admins, customers, and pricing model.]</p>
+            </div>
+        </section>
+
+
+
+
+
+        <div class="project-image-block">
+            <img src="../miro-basic-license.png" alt="License overhaul detail">
+            <div class="project-image-caption">[Caption: short description of what this screenshot shows.]</div>
+        </div>
+
+        <div class="project-quote">
+            <blockquote>
+                [A short, punchy quote that captures the spirit of the work — from research, leadership, or your own framing.]
+            </blockquote>
+            <cite>— [Source · Role]</cite>
+        </div>
+
+        <section class="project-gallery" id="gallery">
+            <h2 class="project-gallery-heading">Project overview</h2>
+            <img src="miro-license-images/page-04.jpg" alt="License Overhaul page 4" loading="lazy">
+            <img src="miro-license-images/page-05.jpg" alt="License Overhaul page 5" loading="lazy">
+            <img id="context" src="miro-license-images/page-06.jpg" alt="License Overhaul page 6" loading="lazy">
+            <img src="miro-license-images/page-07.jpg" alt="License Overhaul page 7" loading="lazy">
+            <img src="miro-license-images/page-08.jpg" alt="License Overhaul page 8" loading="lazy">
+            <img src="miro-license-images/page-09.jpg" alt="License Overhaul page 9" loading="lazy">
+            <img src="miro-license-images/page-10.jpg" alt="License Overhaul page 10" loading="lazy">
+            <img src="miro-license-images/page-11.jpg" alt="License Overhaul page 11" loading="lazy">
+            <img src="miro-license-images/page-12.jpg" alt="License Overhaul page 12" loading="lazy">
+            <img id="principles" src="miro-license-images/page-13.jpg" alt="License Overhaul page 13" loading="lazy">
+            <img src="miro-license-images/page-14.jpg" alt="License Overhaul page 14" loading="lazy">
+            <img src="miro-license-images/page-15.jpg" alt="License Overhaul page 15" loading="lazy">
+            <img src="miro-license-images/page-16.jpg" alt="License Overhaul page 16" loading="lazy">
+            <img src="miro-license-images/page-17.jpg" alt="License Overhaul page 17" loading="lazy">
+            <img src="miro-license-images/page-18.jpg" alt="License Overhaul page 18" loading="lazy">
+            <img id="problem" src="miro-license-images/page-19.jpg" alt="License Overhaul page 19" loading="lazy">
+            <img src="miro-license-images/page-20.jpg" alt="License Overhaul page 20" loading="lazy">
+            <img id="designs" src="miro-license-images/page-21.jpg" alt="License Overhaul page 21" loading="lazy">
+            <img src="miro-license-images/page-22.jpg" alt="License Overhaul page 22" loading="lazy">
+            <img src="miro-license-images/page-23.jpg" alt="License Overhaul page 23" loading="lazy">
+            <img src="miro-license-images/page-24.jpg" alt="License Overhaul page 24" loading="lazy">
+            <img src="miro-license-images/page-25.jpg" alt="License Overhaul page 25" loading="lazy">
+            <img id="reflection" src="miro-license-images/page-26.jpg" alt="License Overhaul page 26" loading="lazy">
+        </section>
+
+        <div class="project-jump-wrap project-jump-wrap--end" id="bottom">
+            <button id="drench-btn" type="button" aria-label="Cycle background color">[ COLOR DRENCH ]</button>
+            <a class="project-jump" href="#top">↑ Back to top</a>
+            <button id="dark-btn" type="button" aria-pressed="false" aria-label="Toggle dark mode">[ DARK MODE ]</button>
+        </div>
+
+        <div class="project-footer">
+            <a href="../feen-test-folio.html#work">
+                <span class="project-footer-label">← Previous</span>
+                <span class="project-footer-title">Back to Work</span>
+            </a>
+            <a class="project-footer-next" href="../feen-test-folio.html#work">
+                <span class="project-footer-label">Up next →</span>
+                <span class="project-footer-title">Miro, Design System Components</span>
+            </a>
+        </div>
+    </main>
+
+    <div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <div class="gallery-counter"><span id="gallery-current">1</span> / <span id="gallery-total">1</span></div>
+        <button type="button" class="gallery-lightbox-close" id="gallery-close">Close ×</button>
+        <button type="button" class="gallery-nav gallery-prev" id="gallery-prev" aria-label="Previous">←</button>
+        <img id="gallery-lightbox-img" src="" alt="">
+        <button type="button" class="gallery-nav gallery-next" id="gallery-next" aria-label="Next">→</button>
+    </div>
+
+    <script>
+        // Reading progress bar
+        const rp = document.getElementById('read-progress');
+        if (rp) {
+            const updateRP = () => {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                rp.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+            };
+            window.addEventListener('scroll', updateRP, { passive: true });
+            window.addEventListener('resize', updateRP, { passive: true });
+            updateRP();
+        }
+
+        // Active TOC link based on scroll position
+        const tocEl = document.querySelector('.project-toc');
+        const tocLinks = document.querySelectorAll('.project-toc a');
+        if (tocLinks.length && 'IntersectionObserver' in window) {
+            const sections = Array.from(tocLinks).map((a) => document.querySelector(a.getAttribute('href')));
+            const tocObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const id = '#' + entry.target.id;
+                        tocLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === id));
+                    }
+                });
+            }, { rootMargin: '-30% 0px -55% 0px' });
+            sections.forEach((s) => s && tocObserver.observe(s));
+        }
+
+        // Reveal TOC only once user reaches the gallery heading
+        const galleryHeading = document.querySelector('.project-gallery-heading');
+        if (galleryHeading && tocEl && 'IntersectionObserver' in window) {
+            const visObserver = new IntersectionObserver(([entry]) => {
+                // Show when the heading has been scrolled past (top above viewport top)
+                tocEl.classList.toggle('is-visible', entry.boundingClientRect.top < 0);
+            }, { threshold: 0 });
+            visObserver.observe(galleryHeading);
+        }
+
+        // Gallery click-to-enlarge lightbox
+        const galleryImages = Array.from(document.querySelectorAll('.project-gallery img'));
+        const galleryLb = document.getElementById('gallery-lightbox');
+        const galleryLbImg = document.getElementById('gallery-lightbox-img');
+        const galleryCurrent = document.getElementById('gallery-current');
+        const galleryTotal = document.getElementById('gallery-total');
+        let galleryIdx = 0;
+        const openGallery = (i) => {
+            if (!galleryImages.length) return;
+            galleryIdx = ((i % galleryImages.length) + galleryImages.length) % galleryImages.length;
+            galleryLbImg.src = galleryImages[galleryIdx].src;
+            galleryLbImg.alt = galleryImages[galleryIdx].alt;
+            galleryCurrent.textContent = galleryIdx + 1;
+            galleryTotal.textContent = galleryImages.length;
+            galleryLb.classList.add('is-open');
+            document.body.classList.add('gallery-open');
+            document.body.style.overflow = 'hidden';
+        };
+        const closeGallery = () => {
+            galleryLb.classList.remove('is-open');
+            document.body.classList.remove('gallery-open');
+            document.body.style.overflow = '';
+        };
+        galleryImages.forEach((img, i) => img.addEventListener('click', () => openGallery(i)));
+        document.getElementById('gallery-prev').addEventListener('click', () => openGallery(galleryIdx - 1));
+        document.getElementById('gallery-next').addEventListener('click', () => openGallery(galleryIdx + 1));
+        document.getElementById('gallery-close').addEventListener('click', closeGallery);
+        galleryLb.addEventListener('click', (e) => { if (e.target === galleryLb) closeGallery(); });
+        document.addEventListener('keydown', (e) => {
+            if (!galleryLb.classList.contains('is-open')) return;
+            if (e.key === 'Escape') closeGallery();
+            if (e.key === 'ArrowLeft') openGallery(galleryIdx - 1);
+            if (e.key === 'ArrowRight') openGallery(galleryIdx + 1);
+        });
+    </script>
+
+
+
+    <script>
+        // Color drench + dark mode (project pages — no Three.js)
+        (function () {
+            const drenchHues = [210, 25, 350, 130, 280, 50, 175, 320, 95, 5];
+            let drenchIndex = -1;
+            const hslToHex = (h, s, l) => {
+                l /= 100;
+                const a = s * Math.min(l, 1 - l) / 100;
+                const f = n => {
+                    const k = (n + h / 30) % 12;
+                    const c = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+                    return Math.round(255 * c).toString(16).padStart(2, '0');
+                };
+                return '#' + f(0) + f(8) + f(4);
+            };
+            const drenchNudges = ['[ ONE MORE? ]', '[ I DARE YOU ]', '[ KEEP GOING → ]', '[ AGAIN? ]', '[ …OR STOP HERE ]', '[ JUST ONE MORE ]', "[ COULDN'T HELP IT? ]", '[ ANOTHER ROUND ]', '[ STILL HERE? ]', '[ OK LAST ONE ]'];
+            let drenchClicks = 0;
+            const drenchBtn = document.getElementById('drench-btn');
+            const darkBtn = document.getElementById('dark-btn');
+            drenchBtn.addEventListener('click', () => {
+                if (document.documentElement.classList.contains('dark-mode')) {
+                    document.documentElement.classList.remove('dark-mode');
+                    darkBtn.textContent = '[ DARK MODE ]';
+                    darkBtn.setAttribute('aria-pressed', 'false');
+                }
+                drenchIndex = (drenchIndex + 1) % (drenchHues.length + 1);
+                if (drenchIndex === drenchHues.length) {
+                    document.documentElement.style.removeProperty('--bg');
+                    document.documentElement.style.removeProperty('--fg');
+                } else {
+                    document.documentElement.style.setProperty('--bg', hslToHex(drenchHues[drenchIndex], 85, 72));
+                    document.documentElement.style.setProperty('--fg', '#000');
+                }
+                drenchBtn.textContent = drenchNudges[drenchClicks % drenchNudges.length];
+                drenchClicks++;
+            });
+            darkBtn.addEventListener('click', () => {
+                const isDark = !document.documentElement.classList.contains('dark-mode');
+                document.documentElement.classList.toggle('dark-mode', isDark);
+                darkBtn.textContent = isDark ? '[ LIGHT MODE ]' : '[ DARK MODE ]';
+                darkBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+                if (isDark) {
+                    document.documentElement.style.setProperty('--bg', '#141414');
+                    document.documentElement.style.setProperty('--fg', '#e4e4e2');
+                } else {
+                    document.documentElement.style.removeProperty('--bg');
+                    document.documentElement.style.removeProperty('--fg');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
