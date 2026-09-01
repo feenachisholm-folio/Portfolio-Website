@@ -1559,6 +1559,8 @@
             align-items: center;
             gap: 8px;
         }
+        .footer-text { display: none; }
+        @media (min-width: 801px) { .footer-text { display: inline; } }
         .heart-icon {
             shape-rendering: crispEdges;
             flex-shrink: 0;
@@ -1679,7 +1681,6 @@
             #drench-btn:hover, #drench-btn:active { transform: none; }
             .back-to-top { display: flex; color: #fff; }
             .footer-credit { padding: 16px 20px; justify-content: center; }
-            .footer-text { display: none; }
             .work-controls,
             .timeline-controls { display: none; }
             .talk-sep { display: none; }
