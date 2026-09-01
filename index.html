@@ -1675,8 +1675,8 @@
             #ui-overlay { grid-template-rows: auto 1fr auto; }
             #dark-btn,
             .scroll-bottom-btn { display: none; }
-            .footer-bar { padding: 20px; font-size: 11px; flex-direction: column; align-items: flex-start; gap: 12px; }
-            #drench-btn { position: static; }
+            .footer-bar { padding: 20px; font-size: 11px; }
+            #drench-btn { position: static; display: block; width: 100%; box-sizing: border-box; }
             .work-controls,
             .timeline-controls { display: none; }
             .talk-sep { display: none; }
@@ -2327,8 +2327,8 @@
         <button type="button" class="lightbox-nav lightbox-next" id="lb-next" aria-label="Next project">→</button>
     </div>
 
+    <button id="drench-btn" type="button" aria-label="Cycle background color">[ COLOR DRENCH ]</button>
     <footer class="footer-bar">
-        <button id="drench-btn" type="button" aria-label="Cycle background color">[ COLOR DRENCH ]</button>
         <div>
             Crafted with care &amp; claude code
             <button type="button" class="heart-btn" id="heart-btn" aria-label="Send some love" data-tooltip="Tap for love">
