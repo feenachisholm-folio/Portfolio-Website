@@ -466,6 +466,11 @@
             margin: 0 0 8px auto;
             animation: icon-float 3.1s infinite ease-in-out;
         }
+        .claude-icon {
+            display: block;
+            shape-rendering: crispEdges;
+            animation: icon-float 4.4s infinite ease-in-out;
+        }
         @keyframes icon-float {
             0%, 100% { transform: translateY(0); }
             50%      { transform: translateY(-6px); }
@@ -1639,7 +1644,8 @@
             nav#topnav .links a:last-child { border-bottom: none; }
             nav#topnav.is-floating .links a { border-bottom-color: rgba(255, 255, 255, 0.15); }
             :root { --nav-h: 56px; }
-            .hero { height: 300px; background: rgba(0,0,0,0.03); border-bottom: 0.5px solid rgba(0,0,0,0.12); }
+            .hero { height: 300px; background: linear-gradient(160deg, #eaeaea 0%, #d0d0ce 100%); border-bottom: 0.5px solid rgba(0,0,0,0.12); }
+            .claude-label { display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 0; border: none; }
             #ui-overlay { display: block; }
             .header-main { grid-column: unset; grid-row: unset; position: absolute; top: 20px; left: 20px; padding: 16px; border: none; }
             .header-main h1 { font-size: 20px; line-height: 1.4; }
@@ -1801,6 +1807,27 @@
                 Tools:<br>
                 Claude Code<br>
                 Figma
+            </div>
+
+            <div class="ui-element claude-label" aria-hidden="true">
+                <svg class="claude-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" shape-rendering="crispEdges" focusable="false">
+                    <!-- White fill: C body -->
+                    <path d="M8 5H17V7H10V17H17V19H8V5Z" fill="white"/>
+                    <!-- Top bar outline -->
+                    <path d="M7 4H18V5H7V4Z" fill="currentColor"/>
+                    <!-- Top-right arm -->
+                    <path d="M17 5H19V8H17V5Z" fill="currentColor"/>
+                    <!-- Left side -->
+                    <path d="M6 4H8V20H6V4Z" fill="currentColor"/>
+                    <!-- Bottom-right arm -->
+                    <path d="M17 16H19V20H17V16Z" fill="currentColor"/>
+                    <!-- Bottom bar outline -->
+                    <path d="M7 19H18V20H7V19Z" fill="currentColor"/>
+                    <!-- Inner C gap — top edge -->
+                    <path d="M10 7H17V8H10V7Z" fill="currentColor"/>
+                    <!-- Inner C gap — bottom edge -->
+                    <path d="M10 16H17V17H10V16Z" fill="currentColor"/>
+                </svg>
             </div>
 
             <div class="ui-element header-status">
