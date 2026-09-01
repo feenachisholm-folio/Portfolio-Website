@@ -1640,11 +1640,13 @@
             nav#topnav.is-floating .links a { border-bottom-color: rgba(255, 255, 255, 0.15); }
             :root { --nav-h: 56px; }
             .hero { height: 300px; }
-            #ui-overlay { display: flex; align-items: center; }
-            .header-main { grid-column: unset; grid-row: unset; flex-shrink: 0; }
+            #ui-overlay { display: block; }
+            .header-main { grid-column: unset; grid-row: unset; position: absolute; top: 20px; left: 20px; padding: 16px; border: none; border-left: 0.5px solid rgba(26,26,26,0.1); }
             .header-main h1 { font-size: 20px; line-height: 1.4; }
-            .header-meta,
-            .header-status { display: none; }
+            .header-meta { display: block; position: absolute; top: 16px; right: 16px; padding: 12px; border: none; font-size: 0; line-height: 0; }
+            .header-meta svg { display: block; }
+            .header-status { display: block; position: absolute; bottom: 20px; right: 16px; padding: 12px; border: none; }
+            .header-status .status-line { display: none; }
             .y-labels { display: none; }
             .diagram-label,
             .experience-label,
