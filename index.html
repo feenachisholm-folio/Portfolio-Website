@@ -1675,8 +1675,8 @@
             #ui-overlay { grid-template-rows: auto 1fr auto; }
             #dark-btn,
             .scroll-bottom-btn { display: none; }
-            .footer-bar { padding: 20px 20px 80px; font-size: 11px; }
-            #drench-btn { bottom: 48px; }
+            .footer-bar { padding: 20px; font-size: 11px; flex-direction: column; align-items: flex-start; gap: 12px; }
+            #drench-btn { position: static; }
             .work-controls,
             .timeline-controls { display: none; }
             .talk-sep { display: none; }
@@ -1748,7 +1748,6 @@
         </div>
     </nav>
 
-    <button id="drench-btn" type="button" aria-label="Cycle background color">[ COLOR DRENCH ]</button>
     <button id="dark-btn" type="button" aria-pressed="false" aria-label="Toggle dark mode">[ DARK MODE ]</button>
 
     <main id="main">
@@ -2329,6 +2328,7 @@
     </div>
 
     <footer class="footer-bar">
+        <button id="drench-btn" type="button" aria-label="Cycle background color">[ COLOR DRENCH ]</button>
         <div>
             Crafted with care &amp; claude code
             <button type="button" class="heart-btn" id="heart-btn" aria-label="Send some love" data-tooltip="Tap for love">
