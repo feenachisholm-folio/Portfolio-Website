@@ -467,6 +467,11 @@
             animation: icon-float 3.1s infinite ease-in-out;
         }
 
+        @keyframes hero-gradient-shift {
+            0%   { background-position: 0% 0%; }
+            50%  { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
         @keyframes icon-float {
             0%, 100% { transform: translateY(0); }
             50%      { transform: translateY(-6px); }
@@ -1640,7 +1645,7 @@
             nav#topnav .links a:last-child { border-bottom: none; }
             nav#topnav.is-floating .links a { border-bottom-color: rgba(255, 255, 255, 0.15); }
             :root { --nav-h: 56px; }
-            .hero { height: 300px; background: linear-gradient(160deg, #d8d8d5 0%, #b8b8b5 100%); border-bottom: 0.5px solid rgba(0,0,0,0.12); }
+            .hero { height: 300px; background: linear-gradient(-45deg, #b8b8b5, #d2d2cf, #e0e0dd, #c4c4c1); background-size: 300% 300%; animation: hero-gradient-shift 9s ease infinite; border-bottom: 0.5px solid rgba(0,0,0,0.12); }
 
             #ui-overlay { display: block; }
             .header-main { grid-column: unset; grid-row: unset; position: absolute; top: 20px; left: 20px; padding: 16px; border: none; }
@@ -2781,12 +2786,23 @@
             floatIcon5.scale.set(s * 1.2, s * 1.2, 1);
         });
 
-        const heroIsMobile = window.matchMedia('(max-width: 800px)').matches;
-        if (!heroIsMobile) {
+        let animationStarted = false;
+        const heroMQ = window.matchMedia('(max-width: 800px)');
+        function handleHeroBreakpoint(e) {
+            if (e.matches) {
+                if (container) container.style.display = 'none';
+            } else {
+                if (container) container.style.display = '';
+                if (!animationStarted) { animationStarted = true; animate(); }
+            }
+        }
+        if (!heroMQ.matches) {
+            animationStarted = true;
             animate();
         } else if (container) {
             container.style.display = 'none';
         }
+        heroMQ.addEventListener('change', handleHeroBreakpoint);
 
         // --- COLOR DRENCH ---
         // Cycle through monochrome palettes. Each click picks a new hue and
