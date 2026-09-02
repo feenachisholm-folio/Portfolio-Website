@@ -2297,7 +2297,7 @@
             </p>
             <div>
                 <button type="button" class="contact-email" id="email-btn" aria-label="Copy email address to clipboard">
-                    <span class="email-text">feena.chisholm@gmail.com</span>
+                    <span class="email-text">hello@feenachisholm.com</span>
                 </button>
                 <ul class="contact-socials" role="list">
                     <li><a href="https://www.linkedin.com/in/feena-chisholm-o-sullivan-735149122/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></li>
@@ -3062,11 +3062,11 @@
         const emailBtn = document.getElementById('email-btn');
         emailBtn.addEventListener('click', async () => {
             try {
-                await navigator.clipboard.writeText('feena.chisholm@gmail.com');
+                await navigator.clipboard.writeText('hello@feenachisholm.com');
             } catch (err) {
                 // Fallback for older browsers / non-secure contexts
                 const tmp = document.createElement('textarea');
-                tmp.value = 'feena.chisholm@gmail.com';
+                tmp.value = 'hello@feenachisholm.com';
                 document.body.appendChild(tmp);
                 tmp.select();
                 try { document.execCommand('copy'); } catch (_) {}
